@@ -7,13 +7,14 @@ use Getopt::Long;
 use Pod::Usage;
 use Parallel::ForkManager;
 
-my $metaphlan_dir='/home/mlangill/programs/metaphlan/';
+my $metaphlan_dir='/usr/local/bioinfx/metaphlan1/';
 my $metaphlan_script=$metaphlan_dir.'metaphlan.py';
 my $metaphlan_db=$metaphlan_dir.'bowtie2db/mpa';
 my $metaphlan_merge=$metaphlan_dir.'utils/merge_metaphlan_tables.py';
 
 #location to store intermediate metaphlan files
-my $metaphlan_out_dir='./metaphlan_out/';
+my $metaphlan_out_dir='/home/bajuna/bioinf_projects/mephlan_out/';
+my $final_out_file='/home/bajuna/bioinf_projects/final_out_file'
 
 my ($final_out_file,$parallel,$help);
 my $res = GetOptions("output=s" => \$final_out_file,
@@ -54,7 +55,7 @@ foreach(@files){
     }
 
     my $name=$file;
-    if($file =~ /(.+)_R[1|2]_/){
+    if($file =~ /(.+)_[1|2]/){
 	$name=$1;
     }
     push(@{$paired_files{$name}},$_);
